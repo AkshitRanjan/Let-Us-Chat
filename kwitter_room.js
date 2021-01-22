@@ -1,22 +1,20 @@
-//Google Firebase links
-function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
-    room_names = childKey;
-    //Start the code
-    var firebaseConfig = {
-        apiKey: "AIzaSyCO2zsLuivPr0nlvx8OAUlKoDru-htoOlU",
-        authDomain: "let-s-chat-2abcd.firebaseapp.com",
-        databaseURL: "https://let-s-chat-2abcd-default-rtdb.firebaseio.com",
-        projectId: "let-s-chat-2abcd",
-        storageBucket: "let-s-chat-2abcd.appspot.com",
-        messagingSenderId: "236488985162",
-        appId: "1:236488985162:web:73891732a9b20717ad34b3"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      //End the code
-});});}
+//ADD YOUR FIREBASE LINKS
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyCO2zsLuivPr0nlvx8OAUlKoDru-htoOlU",
+  authDomain: "let-s-chat-2abcd.firebaseapp.com",
+  databaseURL: "https://let-s-chat-2abcd-default-rtdb.firebaseio.com",
+  projectId: "let-s-chat-2abcd",
+  storageBucket: "let-s-chat-2abcd.appspot.com",
+  messagingSenderId: "236488985162",
+  appId: "1:236488985162:web:73891732a9b20717ad34b3"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-user_name = localStorage.getItem("user_name");
+
+  user_name = localStorage.getItem("user_name");
+
 document.getElementById("user_name").innerHTML = "Welcome " + user_name + "!";
 
 function addRoom()
@@ -27,21 +25,19 @@ function addRoom()
     purpose : "adding room name"
   });
 
-  localStorage.setItem("room_name", room_name);
-
-  window.location = "kwitter_page.html";
+    localStorage.setItem("room_name", room_name);
+    
+    window.location = "kwitter_page.html";
 }
-function getData()
-{
-  firebase.database().ref("/").on('value', function(snapshot) {
-    document.getElementById("output").innerHTML = ""; snapshot.forEach(function (childSnapshot) {
-      childKey = childSnapshot.key;
-      room_names = childKey;
-      console.log("Room Name: " + room_names);
-      row = "<div class = 'room_name' id = " + room_names + "onclick = 'redirectToRoomName(this.id)'>#" + room_names + "</div><hr>";
-      document.getElementById("output").innerHTML += row; 
+
+function getData() {  firebase.database().ref("/").on('value', function(snapshot) { document.getElementById("output").innerHTML = ""; snapshot.forEach(function(childSnapshot) { childKey  = childSnapshot.key;
+       Room_names = childKey;
+       console.log("Room Name - " + Room_names);
+      row = "<div class='room_name' id="+Room_names+" onclick='redirectToRoomName(this.id)' >#"+ Room_names +"</div><hr>";
+      document.getElementById("output").innerHTML += row;
     });
   });
+
 }
 
 getData();
@@ -50,13 +46,11 @@ function redirectToRoomName(name)
 {
   console.log(name);
   localStorage.setItem("room_name", name);
-  window.location = "kwitter_page.html";
+    window.location = "kwitter_page.html";
 }
 
-function logout()
-{
-  localStorage.removeItem("user_name");
-  localStorage.removeItem("room_name");
-  window.location = "index.html";
+function logout() {
+localStorage.removeItem("user_name");
+localStorage.removeItem("room_name");
+    window.location = "index.html";
 }
-getData();
